@@ -1,0 +1,30 @@
+{
+	"name": "spysystem/omnipay-epay",
+	"type": "library",
+	"description": "ePay driver for the Omnipay payment library",
+	"keywords": [
+		"gateway",
+		"merchant",
+		"omnipay",
+		"pay",
+		"payment",
+		"epay"
+	],
+	"repositories": [
+		{"type": "composer", "url": "https://repo.packagist.com/spysystem/"},
+		{"packagist.org": false}
+	],
+	"license": "MIT",
+	"autoload": {
+		"psr-4": { "Omnipay\\EPay\\" : "src/" }
+	},
+	"minimum-stability": "dev",
+	"require": {
+		"omnipay/common": "~3.0",
+		"ext-json": "*",
+		"spysystem/ePay": "dev-master"
+	},
+	"require-dev": {
+		"omnipay/tests": "~3.0"
+	}
+}
