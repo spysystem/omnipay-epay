@@ -17,7 +17,8 @@ class LinkRequest extends AbstractRequest
 		return [
 			'merchant_number'	=> $this->getMerchantNumber(),
 			'currency'			=> $this->getCurrency(),
-			'amount'			=> $this->getAmountInteger()
+			'amount'			=> $this->getAmountInteger(),
+			'callback_url'		=> $this->getCallbackUrl()
 		];
 	}
 

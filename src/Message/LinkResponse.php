@@ -23,6 +23,11 @@ class LinkResponse extends AbstractResponse
 
 		$strUrl .= $arrData['merchant_number'].'&amount='.$arrData['amount'].'&currency='.$arrData['currency'].'&windowstate=3';
 
+		if(isset($arrData['callback_url']))
+		{
+			$strUrl .= '&callbackurl='.$arrData['callback_url'];
+		}
+
 		return	$strUrl;
 	}
 }

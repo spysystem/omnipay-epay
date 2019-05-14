@@ -82,4 +82,14 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	{
 		$this->setParameter('pwd', $strPwd);
 	}
+
+	public function getCallbackUrl(): ?string
+	{
+		return $this->getParameter('callback_url');
+	}
+
+	public function setCallbackUrl(string $strCallbackUrl): string
+	{
+		$this->setParameter('callback_url', $strCallbackUrl);
+	}
 }
