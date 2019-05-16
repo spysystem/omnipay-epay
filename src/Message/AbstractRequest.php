@@ -83,14 +83,14 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 		$this->setParameter('pwd', $strPwd);
 	}
 
-	public function getCallbackUrl(): ?string
+	public function getCallbackurl(): ?string
 	{
-		return $this->getParameter('callback_url');
+		return $this->getParameter('callbackurl');
 	}
 
-	public function setCallbackUrl(string $strCallbackUrl): void
+	public function setCallbackurl(string $strCallbackUrl): void
 	{
-		$this->setParameter('callback_url', $strCallbackUrl);
+		$this->setParameter('callbackurl', $strCallbackUrl);
 	}
 
 	public function getSecret(): ?string
@@ -110,7 +110,16 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 			$strSecret	= $this->getParameter('secret');
 			$this->parameters->remove('secret');
 
-			$strHash	= md5(implode('', array_values($this->parameters->all())). $strSecret);
+			$arrValues	= $this->parameters->all();
+			foreach($arrValues as $key => $value)
+			{
+				if(filter_var($value, FILTER_VALIDATE_URL))
+				{
+					$arrValues[$key]	= urlencode($value);
+				}
+			}
+
+			$strHash	= md5(implode('', $arrValues).$strSecret);
 			$this->parameters->set('hash', $strHash);
 		}
 	}
