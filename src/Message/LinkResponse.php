@@ -18,6 +18,20 @@ class LinkResponse extends AbstractResponse
 
 	public function getRedirectUrl(): string
 	{
-		return	self::Endpoint_Base . http_build_query($this->getData());
+		$arrData	= $this->getData();
+		$strQueryString	= '';
+		foreach($arrData as $strKey => $oValue)
+		{
+			if(strlen($strQueryString) === 0)
+			{
+				$strQueryString .= $strKey.'='.$oValue;
+			}
+			else
+			{
+				$strQueryString .= '&'.$strKey.'='.$oValue;
+			}
+		}
+
+		return	self::Endpoint_Base . $strQueryString;
 	}
 }

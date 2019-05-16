@@ -110,16 +110,7 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 			$strSecret	= $this->getParameter('secret');
 			$this->parameters->remove('secret');
 
-			$arrValues	= $this->parameters->all();
-			foreach($arrValues as $key => $value)
-			{
-				if(filter_var($value, FILTER_VALIDATE_URL))
-				{
-					$arrValues[$key]	= urlencode($value);
-				}
-			}
-
-			$strHash	= md5(implode('', $arrValues).$strSecret);
+			$strHash	= md5(implode('', $this->parameters->all()).$strSecret);
 			$this->parameters->set('hash', $strHash);
 		}
 	}
@@ -153,5 +144,10 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	public function getPaymentCollection(): int
 	{
 		return $this->getParameter('paymentcollection');
+	}
+
+	public function getAmount(): int
+	{
+		return $this->getAmountInteger();
 	}
 }
