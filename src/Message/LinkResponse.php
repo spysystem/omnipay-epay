@@ -5,7 +5,7 @@ use Omnipay\Common\Message\AbstractResponse;
 
 class LinkResponse extends AbstractResponse
 {
-	private const Endpoint_Base			= 'https://ssl.ditonlinebetalingssystem.dk/integration/ewindow/Default.aspx?merchantnumber=';
+	private const Endpoint_Base			= 'https://ssl.ditonlinebetalingssystem.dk/integration/ewindow/Default.aspx?';
 	/**
 	 * Is the response successful?
 	 *
@@ -18,16 +18,6 @@ class LinkResponse extends AbstractResponse
 
 	public function getRedirectUrl(): string
 	{
-		$strUrl		= self::Endpoint_Base;
-		$arrData	= $this->getData();
-
-		$strUrl .= $arrData['merchant_number'].'&amount='.$arrData['amount'].'&currency='.$arrData['currency'].'&windowstate=3';
-
-		if(isset($arrData['callback_url']))
-		{
-			$strUrl .= '&callbackurl='.$arrData['callback_url'];
-		}
-
-		return	$strUrl;
+		return	self::Endpoint_Base . http_build_query($this->getData());
 	}
 }

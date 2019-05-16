@@ -12,14 +12,10 @@ class LinkRequest extends AbstractRequest
 	 */
 	public function getData()
 	{
-		$this->validate('merchant_number', 'currency', 'amount');
+		$this->validate('merchantnumber', 'currency', 'amount');
 
-		return [
-			'merchant_number'	=> $this->getMerchantNumber(),
-			'currency'			=> $this->getCurrency(),
-			'amount'			=> $this->getAmountInteger(),
-			'callback_url'		=> $this->getCallbackUrl()
-		];
+		$this->setHash();
+		return $this->parameters->all();
 	}
 
 	public function sendData($data): ResponseInterface

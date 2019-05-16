@@ -25,7 +25,7 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	public function getData()
 	{
 		return [
-			'merchantnumber'	=> $this->getMerchantNumber(),
+			'merchantnumber'	=> $this->getMerchantnumber(),
 			'amount'			=> $this->getAmountInteger()
 		];
 	}
@@ -48,23 +48,23 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	public function send()
 	{
 		$arrData	= $this->getData();
-		$this->sendData($arrData);
+		return $this->sendData($arrData);
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getMerchantNumber(): ?int
+	public function getMerchantnumber(): ?int
 	{
-		return $this->getParameter('merchant_number');
+		return $this->getParameter('merchantnumber');
 	}
 
 	/**
 	 * @param int $iMerchantNumber
 	 */
-	public function setMerchantNumber(int $iMerchantNumber): void
+	public function setMerchantnumber(int $iMerchantNumber): void
 	{
-		$this->setParameter('merchant_number', $iMerchantNumber);
+		$this->setParameter('merchantnumber', $iMerchantNumber);
 	}
 
 	/**
@@ -88,8 +88,61 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 		return $this->getParameter('callback_url');
 	}
 
-	public function setCallbackUrl(string $strCallbackUrl): string
+	public function setCallbackUrl(string $strCallbackUrl): void
 	{
 		$this->setParameter('callback_url', $strCallbackUrl);
+	}
+
+	public function getSecret(): ?string
+	{
+		return $this->parameters->get('secret');
+	}
+
+	public function setSecret(string $strSecret): void
+	{
+		$this->setParameter('secret', $strSecret);
+	}
+
+	public function setHash()
+	{
+		if($this->parameters->has('secret'))
+		{
+			$strSecret	= $this->getParameter('secret');
+			$this->parameters->remove('secret');
+
+			$strHash	= md5(implode('', array_values($this->parameters->all())). $strSecret);
+			$this->parameters->set('hash', $strHash);
+		}
+	}
+
+	public function getDefaultParams(): array
+	{
+		return [
+			'merchantnumber'	=> '',
+			'secret'			=> '',
+			'language'			=> 0,
+			'windowstate'		=> 3,
+			'paymentcollection'	=> 1
+		];
+	}
+
+	public function setLanguage(int $iLanguage)
+	{
+		$this->setParameter('language', $iLanguage);
+	}
+
+	public function getLanguage(): int
+	{
+		return $this->getParameter('language');
+	}
+
+	public function setPaymentCollection(int $iPaymentCollectionOption): void
+	{
+		$this->setParameter('paymentcollection', $iPaymentCollectionOption);
+	}
+
+	public function getPaymentCollection(): int
+	{
+		return $this->getParameter('paymentcollection');
 	}
 }

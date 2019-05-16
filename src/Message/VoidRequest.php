@@ -13,10 +13,10 @@ class VoidRequest extends AbstractRequest
 {
 	public function getData()
 	{
-		$this->validate('merchant_number', 'transaction_reference');
+		$this->validate('merchantnumber', 'transaction_reference');
 
 		return [
-			'merchant_number'		=> $this->getMerchantNumber(),
+			'merchantnumber'		=> $this->getMerchantnumber(),
 			'transaction_reference'	=> $this->getTransactionReference(),
 			'pwd'					=> $this->getPwd()
 		];
@@ -24,7 +24,7 @@ class VoidRequest extends AbstractRequest
 
 	public function sendData($data): ResponseInterface
 	{
-		$oDelete	= new delete($data['merchant_number'], $data['transaction_reference'], null);
+		$oDelete	= new delete($data['merchantnumber'], $data['transaction_reference'], null);
 
 		if($data['pwd'] !== null)
 		{

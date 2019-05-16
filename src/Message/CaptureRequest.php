@@ -18,10 +18,10 @@ class CaptureRequest extends AbstractRequest
 	 */
 	public function getData(): array
 	{
-		$this->validate('merchant_number', 'transaction_reference', 'amount');
+		$this->validate('merchantnumber', 'transaction_reference', 'amount');
 
 		return [
-			'merchant_number'		=> $this->getMerchantNumber(),
+			'merchantnumber'		=> $this->getMerchantnumber(),
 			'transaction_reference'	=> $this->getTransactionReference(),
 			'amount'				=> $this->getAmountInteger(),
 			'pwd'					=> $this->getPwd()
@@ -30,7 +30,7 @@ class CaptureRequest extends AbstractRequest
 
 	public function sendData($data): ResponseInterface
 	{
-		$oCapture	= new capture($data['merchant_number'], $data['transaction_id'], $data['amount'], null, null);
+		$oCapture	= new capture($data['merchantnumber'], $data['transaction_id'], $data['amount'], null, null);
 
 		if($data['pwd'] !== null)
 		{
