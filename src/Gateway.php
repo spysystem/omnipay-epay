@@ -41,32 +41,36 @@ class Gateway extends AbstractGateway
 
 	/**
 	 * @param array $arrParams
-	 * @return AbstractRequest|RequestInterface
+	 * @return CaptureRequest|RequestInterface
 	 */
-	public function capture(array $arrParams)
+	public function capture(array $arrParams): CaptureRequest
 	{
 		return $this->createRequest(CaptureRequest::class, $arrParams);
 	}
 
 	/**
 	 * @param array $arrParams
-	 * @return AbstractRequest
+	 * @return LinkRequest|RequestInterface
 	 */
-	public function link(array $arrParams): AbstractRequest
+	public function link(array $arrParams): LinkRequest
 	{
 		return $this->createRequest(LinkRequest::class, $arrParams);
 	}
 
-	public function refund(array $arrParams)
+	/**
+	 * @param array $arrParams
+	 * @return RefundRequest|RequestInterface
+	 */
+	public function refund(array $arrParams): RefundRequest
 	{
 		return $this->createRequest(RefundRequest::class, $arrParams);
 	}
 
 	/**
 	 * @param array $arrParams
-	 * @return AbstractRequest|RequestInterface
+	 * @return VoidRequest|RequestInterface
 	 */
-	public function void(array $arrParams)
+	public function void(array $arrParams): VoidRequest
 	{
 		return $this->createRequest(VoidRequest::class, $arrParams);
 	}

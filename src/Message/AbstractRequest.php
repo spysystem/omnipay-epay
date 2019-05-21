@@ -1,14 +1,12 @@
 <?php
 namespace Omnipay\EPay\Message;
 
+use Omnipay\Common\Message\ResponseInterface;
+
 /*
  * Class AbstractRequest
  * @package Omnipay\EPay\Message
  */
-
-use Omnipay\Common\Message\ResponseInterface;
-use SoapClient;
-
 class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
 	protected const Endpoint_Base			= 'https://ssl.ditonlinebetalingssystem.dk/';
@@ -35,17 +33,13 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	 *
 	 * @param mixed $data The data to send
 	 * @return ResponseInterface
-	 * @throws \SoapFault
 	 */
 	public function sendData($data): ResponseInterface
 	{
-		$strUrl		= self::Endpoint_Base.self::Endpoint_API;
-		$oClient	= new SoapClient($strUrl);
-
-		$oClient->__soapCall($this->strOperation, [$data]);
+		parent::sendData($data);
 	}
 
-	public function send()
+	public function send(): ResponseInterface
 	{
 		$arrData	= $this->getData();
 		return $this->sendData($arrData);
@@ -103,7 +97,7 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 		$this->setParameter('secret', $strSecret);
 	}
 
-	public function setHash()
+	public function setHash(): void
 	{
 		if($this->parameters->has('secret'))
 		{
@@ -126,7 +120,7 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 		];
 	}
 
-	public function setLanguage(int $iLanguage)
+	public function setLanguage(int $iLanguage): void
 	{
 		$this->setParameter('language', $iLanguage);
 	}
@@ -149,5 +143,15 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	public function getAmount(): int
 	{
 		return $this->getAmountInteger();
+	}
+
+	public function setInstantcallback(bool $bIsInstantcallback): void
+	{
+		$this->setParameter('instantcallback', $bIsInstantcallback);
+	}
+
+	public function getInstantcallback(): bool
+	{
+		return $this->getParameter('instantcallback');
 	}
 }

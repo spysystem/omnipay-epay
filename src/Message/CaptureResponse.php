@@ -16,7 +16,7 @@ class CaptureResponse extends AbstractResponse
 		return $this->getResponse()->getCaptureResult();
 	}
 
-	public function getResponse(): \EPay\WebService\captureResponse
+	public function getResponse(): \EPay\captureResponse
 	{
 		return $this->data;
 	}

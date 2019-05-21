@@ -13,11 +13,11 @@ class RefundRequest extends AbstractRequest
 {
 	public function getData()
 	{
-		$this->validate('merchantnumber', 'transaction_reference', 'amount');
+		$this->validate('merchantnumber', 'transactionReference', 'amount');
 
 		return [
 			'merchantnumber'		=> $this->getMerchantnumber(),
-			'transaction_reference'	=> $this->getTransactionReference(),
+			'transactionReference'	=> $this->getTransactionReference(),
 			'amount'				=> $this->getAmountInteger(),
 			'pwd'					=> $this->getPwd()
 		];
@@ -25,7 +25,7 @@ class RefundRequest extends AbstractRequest
 
 	public function sendData($data): ResponseInterface
 	{
-		$oRefund	= new credit($data['merchantnumber'], $data['transaction_reference'], $data['amount'], null, null);
+		$oRefund	= new credit($data['merchantnumber'], $data['transactionReference'], $data['amount'], null, null);
 
 		if($data['pwd'] !== null)
 		{

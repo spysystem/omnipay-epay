@@ -20,8 +20,14 @@ class LinkResponse extends AbstractResponse
 	{
 		$arrData	= $this->getData();
 		$strQueryString	= '';
+
 		foreach($arrData as $strKey => $oValue)
 		{
+			if($strKey === 'callbackurl')
+			{
+				$oValue	= urlencode($oValue);
+			}
+
 			if(strlen($strQueryString) === 0)
 			{
 				$strQueryString .= $strKey.'='.$oValue;

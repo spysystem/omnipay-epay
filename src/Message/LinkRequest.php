@@ -14,6 +14,7 @@ class LinkRequest extends AbstractRequest
 	{
 		$this->validate('merchantnumber', 'currency', 'amount');
 
+		$this->setAmount($this->getAmountInteger());
 		$this->setHash();
 		return $this->parameters->all();
 	}

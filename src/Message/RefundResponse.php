@@ -1,12 +1,12 @@
 <?php
-
-
 namespace Omnipay\EPay\Message;
-
 
 use EPay\creditResponse;
 use Omnipay\Common\Message\AbstractResponse;
-
+/**
+ * Class RefundResponse
+ * @package Omnipay\EPay\Message
+ */
 class RefundResponse extends AbstractResponse
 {
 
