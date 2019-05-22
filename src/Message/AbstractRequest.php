@@ -18,9 +18,9 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	 * Get the raw data array for this message. The format of this varies from gateway to
 	 * gateway, but will usually be either an associative array, or a SimpleXMLElement.
 	 *
-	 * @return mixed
+	 * @return array
 	 */
-	public function getData()
+	public function getData(): array
 	{
 		return [
 			'merchantnumber'	=> $this->getMerchantnumber(),
@@ -39,6 +39,9 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 		parent::sendData($data);
 	}
 
+	/**
+	 * @return ResponseInterface
+	 */
 	public function send(): ResponseInterface
 	{
 		$arrData	= $this->getData();
@@ -46,7 +49,7 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	}
 
 	/**
-	 * @return int
+	 * @return int|null
 	 */
 	public function getMerchantnumber(): ?int
 	{

@@ -21,22 +21,19 @@ class CaptureResponse extends AbstractResponse
 		return $this->data;
 	}
 
-	public function getErrorCode(): int
+	/**
+	 * @return int|null
+	 */
+	public function getEPayErrorCode(): ?int
 	{
-		if($this->isSuccessful())
-		{
-			return 0;
-		}
+		return $this->getResponse()->getEpayresponse();
+	}
 
-		$oResponse	= $this->getResponse();
-
-		$iErrorCode	= $oResponse->getEpayresponse() ?? 0;
-
-		if($iErrorCode === 0 && $oResponse->getPbsResponse() !== null)
-		{
-			return $oResponse->getPbsResponse();
-		}
-
-		return $iErrorCode;
+	/**
+	 * @return int|null
+	 */
+	public function getPbsErrorCode(): ?int
+	{
+		return $this->getResponse()->getPbsResponse();
 	}
 }

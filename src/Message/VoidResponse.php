@@ -30,15 +30,10 @@ class VoidResponse extends AbstractResponse
 	}
 
 	/**
-	 * @return int
+	 * @return int|null
 	 */
-	public function getErrorCode(): int
+	public function getEPayErrorCode(): ?int
 	{
-		if($this->isSuccessful())
-		{
-			return 0;
-		}
-
 		return $this->getResponse()->getEpayresponse();
 	}
 }
