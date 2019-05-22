@@ -3,7 +3,9 @@ namespace Omnipay\EPay\Message;
 
 use EPay\delete;
 use EPay\Payment;
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\ResponseInterface;
+use SoapFault;
 
 /**
  * Class VoidRequest
@@ -11,7 +13,11 @@ use Omnipay\Common\Message\ResponseInterface;
  */
 class VoidRequest extends AbstractRequest
 {
-	public function getData()
+	/**
+	 * @return array
+	 * @throws InvalidRequestException
+	 */
+	public function getData(): array
 	{
 		$this->validate('merchantnumber', 'transactionReference');
 
@@ -22,6 +28,11 @@ class VoidRequest extends AbstractRequest
 		];
 	}
 
+	/**
+	 * @param mixed $data
+	 * @return ResponseInterface
+	 * @throws SoapFault
+	 */
 	public function sendData($data): ResponseInterface
 	{
 		$oDelete	= new delete($data['merchantnumber'], $data['transactionReference'], null);

@@ -3,7 +3,9 @@ namespace Omnipay\EPay\Message;
 
 use EPay\credit;
 use EPay\Payment;
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\ResponseInterface;
+use SoapFault;
 
 /**
  * Class RefundRequest
@@ -11,7 +13,11 @@ use Omnipay\Common\Message\ResponseInterface;
  */
 class RefundRequest extends AbstractRequest
 {
-	public function getData()
+	/**
+	 * @return array
+	 * @throws InvalidRequestException
+	 */
+	public function getData(): array
 	{
 		$this->validate('merchantnumber', 'transactionReference', 'amount');
 
@@ -23,6 +29,11 @@ class RefundRequest extends AbstractRequest
 		];
 	}
 
+	/**
+	 * @param mixed $data
+	 * @return ResponseInterface
+	 * @throws SoapFault
+	 */
 	public function sendData($data): ResponseInterface
 	{
 		$oRefund	= new credit($data['merchantnumber'], $data['transactionReference'], $data['amount'], null, null);

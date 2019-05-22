@@ -3,6 +3,10 @@ namespace Omnipay\EPay\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 
+/**
+ * Class CaptureResponse
+ * @package Omnipay\EPay\Message
+ */
 class CaptureResponse extends AbstractResponse
 {
 
@@ -16,6 +20,9 @@ class CaptureResponse extends AbstractResponse
 		return $this->getResponse()->getCaptureResult();
 	}
 
+	/**
+	 * @return \EPay\captureResponse
+	 */
 	public function getResponse(): \EPay\captureResponse
 	{
 		return $this->data;

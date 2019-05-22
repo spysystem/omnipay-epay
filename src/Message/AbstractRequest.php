@@ -80,21 +80,33 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 		$this->setParameter('pwd', $strPwd);
 	}
 
+	/**
+	 * @return string|null
+	 */
 	public function getCallbackurl(): ?string
 	{
 		return $this->getParameter('callbackurl');
 	}
 
+	/**
+	 * @param string $strCallbackUrl
+	 */
 	public function setCallbackurl(string $strCallbackUrl): void
 	{
 		$this->setParameter('callbackurl', $strCallbackUrl);
 	}
 
+	/**
+	 * @return string|null
+	 */
 	public function getSecret(): ?string
 	{
 		return $this->parameters->get('secret');
 	}
 
+	/**
+	 * @param string $strSecret
+	 */
 	public function setSecret(string $strSecret): void
 	{
 		$this->setParameter('secret', $strSecret);
@@ -112,6 +124,9 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDefaultParams(): array
 	{
 		return [
@@ -123,36 +138,57 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 		];
 	}
 
+	/**
+	 * @param int $iLanguage
+	 */
 	public function setLanguage(int $iLanguage): void
 	{
 		$this->setParameter('language', $iLanguage);
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLanguage(): int
 	{
 		return $this->getParameter('language');
 	}
 
+	/**
+	 * @param int $iPaymentCollectionOption
+	 */
 	public function setPaymentCollection(int $iPaymentCollectionOption): void
 	{
 		$this->setParameter('paymentcollection', $iPaymentCollectionOption);
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getPaymentCollection(): int
 	{
 		return $this->getParameter('paymentcollection');
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getAmount(): int
 	{
 		return $this->getAmountInteger();
 	}
 
+	/**
+	 * @param bool $bIsInstantcallback
+	 */
 	public function setInstantcallback(bool $bIsInstantcallback): void
 	{
 		$this->setParameter('instantcallback', $bIsInstantcallback);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getInstantcallback(): bool
 	{
 		return $this->getParameter('instantcallback');

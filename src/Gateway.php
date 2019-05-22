@@ -17,7 +17,6 @@ use Omnipay\EPay\Message\VoidRequest;
  */
 class Gateway extends AbstractGateway
 {
-
 	/**
 	 * Get gateway display name
 	 *
@@ -29,11 +28,18 @@ class Gateway extends AbstractGateway
 		return 'ePay';
 	}
 
-	public function authorize(array $arrParams)
+	/**
+	 * @param array $arrParams
+	 * @return RequestInterface|void
+	 */
+	public function authorize(array $arrParams): void
 	{
 		throw new BadMethodCallException('Method authorize() is not implemented as it is handled at the vendor gateway.');
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsAuthorize(): bool
 	{
 		return false;
@@ -75,81 +81,129 @@ class Gateway extends AbstractGateway
 		return $this->createRequest(VoidRequest::class, $arrParams);
 	}
 
-	public function createCard()
+	/**
+	 * @return RequestInterface|void
+	 */
+	public function createCard(): void
 	{
 		throw new BadMethodCallException('This Gateway does not support the function createCard().');
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsCreateCard(): bool
 	{
 		return false;
 	}
 
-	public function updateCard()
+	/**
+	 * @return RequestInterface|void
+	 */
+	public function updateCard(): void
 	{
 		throw new BadMethodCallException('This Gateway does not support the function updateCard()');
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsUpdateCard(): bool
 	{
 		return false;
 	}
 
-	public function deleteCard()
+	/**
+	 * @return RequestInterface|void
+	 */
+	public function deleteCard(): void
 	{
 		throw new BadMethodCallException('This Gateway does not support the function deleteCard()');
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsDeleteCard(): bool
 	{
 		return false;
 	}
 
-	public function fetchTransaction()
+	/**
+	 * @return RequestInterface|void
+	 */
+	public function fetchTransaction(): void
 	{
 		throw new BadMethodCallException('This Gateway does not support the function fetchTransaction()');
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsFetchTransaction(): bool
 	{
 		return false;
 	}
 
-	public function acceptNotification()
+	/**
+	 * @return NotificationInterface|void
+	 */
+	public function acceptNotification(): void
 	{
 		throw new BadMethodCallException('This Gateway does not support the function acceptNotification()');
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsAcceptNotification(): bool
 	{
 		return false;
 	}
 
-	public function completeAuthorize()
+	/**
+	 * @return RequestInterface|void
+	 */
+	public function completeAuthorize(): void
 	{
 		throw new BadMethodCallException('This Gateway does not support the function completeAuthorize()');
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsCompleteAuthorize(): bool
 	{
 		return false;
 	}
 
-	public function purchase()
+	/**
+	 * @return RequestInterface|void
+	 */
+	public function purchase(): void
 	{
 		throw new BadMethodCallException('This Gateway does not support the function purchase()');
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsPurchase(): bool
 	{
 		return false;
 	}
 
-	public function completePurchase()
+	/**
+	 * @return RequestInterface|void
+	 */
+	public function completePurchase(): void
 	{
 		throw new BadMethodCallException('This Gateway does not support the function completePurchase()');
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsCompletePurchase(): bool
 	{
 		return false;

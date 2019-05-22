@@ -21,7 +21,8 @@ class CaptureRequest extends AbstractRequest
 		return [
 			'merchantnumber'		=> $this->getMerchantnumber(),
 			'transactionReference'	=> $this->getTransactionReference(),
-			'amount'				=> $this->getAmountInteger()
+			'amount'				=> $this->getAmountInteger(),
+			'pwd'					=> $this->getPwd()
 		];
 	}
 

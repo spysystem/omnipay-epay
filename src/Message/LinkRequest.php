@@ -4,13 +4,17 @@ namespace Omnipay\EPay\Message;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\ResponseInterface;
 
+/**
+ * Class LinkRequest
+ * @package Omnipay\EPay\Message
+ */
 class LinkRequest extends AbstractRequest
 {
 	/**
-	 * @return array|mixed
+	 * @return array
 	 * @throws InvalidRequestException
 	 */
-	public function getData()
+	public function getData(): array
 	{
 		$this->validate('merchantnumber', 'currency', 'amount');
 
@@ -19,6 +23,10 @@ class LinkRequest extends AbstractRequest
 		return $this->parameters->all();
 	}
 
+	/**
+	 * @param mixed $data
+	 * @return ResponseInterface
+	 */
 	public function sendData($data): ResponseInterface
 	{
 		return new LinkResponse($this, $data);

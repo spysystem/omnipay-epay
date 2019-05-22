@@ -20,6 +20,9 @@ class RefundResponse extends AbstractResponse
 		return $this->getResponse()->getCreditResult();
 	}
 
+	/**
+	 * @return creditResponse
+	 */
 	public function getResponse(): creditResponse
 	{
 		return $this->data;
