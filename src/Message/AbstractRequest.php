@@ -7,7 +7,7 @@ use Omnipay\Common\Message\ResponseInterface;
  * Class AbstractRequest
  * @package Omnipay\EPay\Message
  */
-class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
+abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
 	protected const Endpoint_Base			= 'https://ssl.ditonlinebetalingssystem.dk/';
 	protected const Endpoint_API			= 'remote/payment.asmx?WSDL';
@@ -34,10 +34,7 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	 * @param mixed $mData The data to send
 	 * @return ResponseInterface
 	 */
-	public function sendData($mData): ResponseInterface
-	{
-		parent::sendData($mData);
-	}
+	abstract public function sendData($mData): ResponseInterface;
 
 	/**
 	 * @return ResponseInterface
