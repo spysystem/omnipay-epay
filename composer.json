@@ -18,7 +18,6 @@
 	"autoload": {
 		"psr-4": { "Omnipay\\EPay\\" : "src/" }
 	},
-	"minimum-stability": "dev",
 	"require": {
 		"omnipay/common": "~3.0",
 		"ext-json": "*",

@@ -30,17 +30,17 @@ class RefundRequest extends AbstractRequest
 	}
 
 	/**
-	 * @param mixed $data
+	 * @param mixed $mData
 	 * @return ResponseInterface
 	 * @throws SoapFault
 	 */
-	public function sendData($data): ResponseInterface
+	public function sendData($mData): ResponseInterface
 	{
-		$oRefund	= new credit($data['merchantnumber'], $data['transactionReference'], $data['amount'], null, null);
+		$oRefund	= new credit($mData['merchantnumber'], $mData['transactionReference'], $mData['amount'], null, null);
 
-		if($data['pwd'] !== null)
+		if($mData['pwd'] !== null)
 		{
-			$oRefund->setPwd($data['pwd']);
+			$oRefund->setPwd($mData['pwd']);
 		}
 
 		$oRequest	= new Payment();

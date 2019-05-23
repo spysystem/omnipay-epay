@@ -40,6 +40,6 @@ class LinkResponse extends AbstractResponse
 
 		$strQueryString	= implode('&', $arrParameters);
 
-		return	self::Endpoint_Base . $strQueryString;
+		return self::Endpoint_Base.$strQueryString;
 	}
 }

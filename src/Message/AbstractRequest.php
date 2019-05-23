@@ -31,12 +31,12 @@ class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	/**
 	 * Send the request with specified data
 	 *
-	 * @param mixed $data The data to send
+	 * @param mixed $mData The data to send
 	 * @return ResponseInterface
 	 */
-	public function sendData($data): ResponseInterface
+	public function sendData($mData): ResponseInterface
 	{
-		parent::sendData($data);
+		parent::sendData($mData);
 	}
 
 	/**

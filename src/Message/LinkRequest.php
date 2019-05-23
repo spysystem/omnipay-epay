@@ -24,11 +24,11 @@ class LinkRequest extends AbstractRequest
 	}
 
 	/**
-	 * @param mixed $data
+	 * @param mixed $mData
 	 * @return ResponseInterface
 	 */
-	public function sendData($data): ResponseInterface
+	public function sendData($mData): ResponseInterface
 	{
-		return new LinkResponse($this, $data);
+		return new LinkResponse($this, $mData);
 	}
 }

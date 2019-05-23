@@ -29,17 +29,17 @@ class VoidRequest extends AbstractRequest
 	}
 
 	/**
-	 * @param mixed $data
+	 * @param mixed $mData
 	 * @return ResponseInterface
 	 * @throws SoapFault
 	 */
-	public function sendData($data): ResponseInterface
+	public function sendData($mData): ResponseInterface
 	{
-		$oDelete	= new delete($data['merchantnumber'], $data['transactionReference'], null);
+		$oDelete	= new delete($mData['merchantnumber'], $mData['transactionReference'], null);
 
-		if($data['pwd'] !== null)
+		if($mData['pwd'] !== null)
 		{
-			$oDelete->setPwd($data['pwd']);
+			$oDelete->setPwd($mData['pwd']);
 		}
 
 		$oRequest	= new Payment();

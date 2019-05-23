@@ -26,13 +26,18 @@ class CaptureRequest extends AbstractRequest
 		];
 	}
 
-	public function sendData($data): ResponseInterface
+	/**
+	 * @param mixed $mData
+	 * @return ResponseInterface
+	 * @throws \SoapFault
+	 */
+	public function sendData($mData): ResponseInterface
 	{
-		$oCapture	= new capture($data['merchantnumber'], $data['transactionReference'], $data['amount'], 0, 0);
+		$oCapture	= new capture($mData['merchantnumber'], $mData['transactionReference'], $mData['amount'], 0, 0);
 
-		if($data['pwd'] !== null)
+		if($mData['pwd'] !== null)
 		{
-			$oCapture->setPwd($data['pwd']);
+			$oCapture->setPwd($mData['pwd']);
 		}
 
 		$oRequest	= new Payment();
