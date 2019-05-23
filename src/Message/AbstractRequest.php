@@ -29,14 +29,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	}
 
 	/**
-	 * Send the request with specified data
-	 *
-	 * @param mixed $mData The data to send
-	 * @return ResponseInterface
-	 */
-	abstract public function sendData($mData): ResponseInterface;
-
-	/**
 	 * @return ResponseInterface
 	 */
 	public function send(): ResponseInterface
