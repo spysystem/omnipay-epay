@@ -88,6 +88,22 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	/**
 	 * @return string|null
 	 */
+	public function getAccepturl(): ?string
+	{
+		return $this->getParameter('accepturl');
+	}
+
+	/**
+	 * @param string $strRedirectUrl
+	 */
+	public function setAccepturl(string $strRedirectUrl): void
+	{
+		$this->setParameter('accepturl', $strRedirectUrl);
+	}
+
+	/**
+	 * @return string|null
+	 */
 	public function getSecret(): ?string
 	{
 		return $this->parameters->get('secret');
@@ -181,5 +197,21 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 	public function getInstantcallback(): bool
 	{
 		return $this->getParameter('instantcallback');
+	}
+
+	/**
+	 * @param bool $bIsOwnReceipt
+	 */
+	public function setOwnreceipt(bool $bIsOwnReceipt): void
+	{
+		$this->setParameter('ownreceipt', $bIsOwnReceipt);
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function getOwnreceipt(): bool
+	{
+		return $this->getParameter('ownreceipt');
 	}
 }

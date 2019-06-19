@@ -11,6 +11,7 @@ class LinkResponse extends AbstractResponse
 {
 	private const Endpoint_Base			= 'https://ssl.ditonlinebetalingssystem.dk/integration/ewindow/Default.aspx?';
 	private const FieldName_CallbackURL	= 'callbackurl';
+	private const FieldName_AcceptURL	= 'accepturl';
 	/**
 	 * Is the response successful?
 	 *
@@ -31,7 +32,7 @@ class LinkResponse extends AbstractResponse
 
 		foreach($arrData as $strKey => $mValue)
 		{
-			if($strKey === self::FieldName_CallbackURL)
+			if($strKey === self::FieldName_CallbackURL || $strKey === self::FieldName_AcceptURL)
 			{
 				$mValue	= urlencode($mValue);
 			}
